@@ -37,7 +37,7 @@ const AdminSignUp = () => {
       setMessage({ type: "success", text: "Registration Successful! Redirecting to login..." });
 
       // Redirect to Login Page after successful registration
-      setTimeout(() => navigate("/admin-login"), 1500);
+      setTimeout(() => navigate("/login-admin"), 1500);
     } catch (error) {
       setMessage({
         type: "error",

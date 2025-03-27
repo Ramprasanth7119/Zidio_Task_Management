@@ -9,8 +9,10 @@ const LandingPage = () => {
 
   return (
     <div className="landing-page">
+      <h1 className="landing-title">Welcome to Task Management</h1>
       <h2 className="landing-title">Choose Your Role</h2>
       <p className="landing-description">
+        
         Select whether you want to access the application as an Admin or as a User. 
         Choose the appropriate role and get started!
       </p>

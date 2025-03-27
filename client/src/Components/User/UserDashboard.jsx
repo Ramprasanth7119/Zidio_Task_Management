@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import {Link} from 'react-router-dom'
 
 const UserDashboard = () => {
     const [tasks, setTasks] = useState([]);
@@ -63,6 +64,11 @@ const UserDashboard = () => {
 
     return (
         <div className="dashboard-container">
+           <Link to='/profile'>
+                <button className="profile-button">
+                Profile
+                </button>
+                </Link>
             <h2 className="dashboard-title">Assigned Tasks</h2>
             {loading ? (
                 <p className="loading-text">Loading tasks...</p>

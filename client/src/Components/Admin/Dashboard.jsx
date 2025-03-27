@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import {useNavigate} from 'react-router-dom';
+import './Admin.css';
 
 const AdminTaskAssign = () => {
   const [users, setUsers] = useState([]);
@@ -258,7 +259,8 @@ const AdminTaskAssign = () => {
   };
 
   return (
-    <div>
+    <div className="admin-task-container">
+       <button onClick={handleLogout} className="logou">Logout</button>
       <h2>{isEditing ? "Edit Task" : "Assign Task"}</h2>
       {message && <p>{message}</p>}
       <form onSubmit={handleSubmit}>
@@ -317,22 +319,24 @@ const AdminTaskAssign = () => {
           <div className="assigned-tasks-container">
             {tasks.map((task) => (
               <div key={task._id} className="task-card">
-                <h4>{task.title}</h4>
-                <p><strong>Assigned To:</strong> {task.assignedTo.username}</p>
-                <p><strong>Deadline:</strong> {new Date(task.deadline).toLocaleDateString()}</p>
-                <p><strong>Priority:</strong> {task.priority}</p>
-                <p><strong>Status:</strong> {task.status}</p>
-                <div>
-                  <button onClick={() => handleEditClick(task)}>Edit</button>
-                  <button onClick={() => updateTaskStatus(task._id, "completed")}>Mark as Completed</button>
-                  <button onClick={() => deleteTask(task._id)}>Delete Task</button>
-                </div>
+              <h4>{task.title}</h4>
+              <p><strong>Assigned To:</strong> {task.assignedTo.username}</p>
+              <p><strong>Deadline:</strong> {new Date(task.deadline).toLocaleDateString()}</p>
+              <p><strong>Priority:</strong> {task.priority}</p>
+              <p><strong>Status:</strong> {task.status}</p>
+              
+              {/* Button Container with gap */}
+              <div className="button-container">
+                <button className="edit-btn" onClick={() => handleEditClick(task)}>Edit</button>
+                <button className="completed-btn" onClick={() => updateTaskStatus(task._id, "completed")}>Mark as Completed</button>
+                <button className="delete-btn" onClick={() => deleteTask(task._id)}>Delete Task</button>
               </div>
+            </div>
+            
             ))}
           </div>
         </div>
       )}
-       <button onClick={handleLogout}>Logout</button>
     </div>
   );
 };

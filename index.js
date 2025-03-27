@@ -6,7 +6,7 @@ import { connectDB } from "./src/config/dbConfig.js";
 
 
 //rest object
-const app = express(); 
+const app = express();
 
 const corsOptions = {
   origin: 'http://localhost:5173', // Allow this origin to access the server
