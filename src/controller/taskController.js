@@ -1,5 +1,6 @@
-import { createTaskService, deleteTaskService, getAllTaskService, getTaskByUserService, updateTaskService } from "../service/taskService.js";
 
+import { createTaskService, deleteTaskService, getAllTaskService, getTaskByUserService, updateTaskService} from "../service/taskService.js";
+import {taskRepository} from '../repository/taskRepository.js';
 export const createTaskController = async function (req, res) {
     try {
         const data = { 
@@ -88,10 +89,12 @@ export const getTaskByUserController = async function (req, res) {
     try {
         const userId = req.params.userId;
 
+        // console.log(userId);
+
         if (req.user.id !== userId) {
             return res.status(403).json({
                 success: false,
-                message: "Access denied. You can only view your own tasks."
+                message: "Access denied. You can only view your own task."
             });
         };
 
@@ -109,4 +112,79 @@ export const getTaskByUserController = async function (req, res) {
         error: error.message
       });
     }  
+};
+
+
+export const modifyTaskController = async (req, res) => {
+    try {
+        const taskId = req.params.taskId; // Get task ID from URL
+        const { title, description, deadline, priority, status, assignedTo } = req.body; // Destructure request body
+        console.log(taskId);
+        // Check if task exists
+        const existingTask = await taskRepository.getTaskById(taskId);
+        if (!existingTask) {
+            return res.status(404).json({ success: false, message: 'Task not found' });
+        }
+
+        // Update task details
+        const updatedTask = await taskRepository.update(taskId, {
+            title,
+            description,
+            deadline,
+            priority,
+            status,
+            assignedTo, // Update assignedTo if necessary
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: 'Task updated successfully',
+            data: updatedTask,
+        });
+    } catch (error) {
+        console.error("Error updating task:", error);
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error: error.message,
+        });
+    }
+};
+export const getAdminTasks = async (req, res) => {
+
+    console.log("✅ Inside getAdmintasks function");
+
+    
+    console.log("✅ Decoded Admin ID from Token (req.user.id):", req.user.id);
+    console.log("✅ Admin ID from Query (req.query.adminId):", req.query.adminId);
+
+    // Ensure both are strings for comparison
+    const decodedAdminId = req.user.id.toString();
+    const queryAdminId = req.query.adminId.toString();
+
+    console.log("🔍 After Conversion → Token ID:", decodedAdminId, " | Query ID:", queryAdminId);
+
+    if (decodedAdminId !== queryAdminId) {
+        console.log("❌ Admin ID mismatch. Access Denied.");
+        return res.status(403).json({
+            success: false,
+            message: "Access denied. You can only view your own tasks."
+        });
+    }
+
+    try {
+        const tasks = await Task.find({ assignedBy: req.user.id });
+        console.log("✅ Found Tasks:", tasks);
+        
+        res.status(200).json({
+            success: true,
+            tasks
+        });
+    } catch (error) {
+        console.log("❌ Error Fetching Tasks:", error);
+        res.status(500).json({
+            success: false,
+            message: "Server error"
+        });
+    }
 };

@@ -44,7 +44,7 @@ const AdminSignUp = () => {
         text: error.response?.data?.message || "Registration failed. Try again.",
       });
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 

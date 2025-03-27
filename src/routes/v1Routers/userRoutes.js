@@ -33,5 +33,13 @@ userRouter.get('/profile', isAuthenticated, async (req, res) => {
     }
 });
 
+userRouter.post('/logout', isAuthenticated, (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: "User logged out successfully",
+    });
+});
+
+
 
 export default userRouter;

@@ -39,5 +39,27 @@ export const taskRepository = {
          throw error;
       }
    },
+   update: async function (taskId, updateData) {
+      try {
+          const updatedTask = await Task.findByIdAndUpdate(taskId, updateData, { new: true });
+          return updatedTask;
+      } catch (error) {
+          console.log("Error updating task in repository:", error);
+          throw error;
+      }
+  },
+  getTaskCreatedByAdmin: async function (adminId) {
+   try {
+       const tasks = await Task.find({ assignedBy: adminId }) // Fetch only tasks created by the logged-in admin
+           .populate('assignedBy', 'username email')
+           .populate('assignedTo', 'username email');
+
+       return tasks;
+   } catch (error) {
+       console.log(error);
+       throw error;
+   }
+},
+
 
 };

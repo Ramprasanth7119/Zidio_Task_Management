@@ -17,19 +17,21 @@ const AdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!formData.email || !formData.password) {
       setMessage({ type: "error", text: "Email and Password are required!" });
       return;
     }
-
+  
     try {
       const response = await axios.post("http://localhost:5000/api/v1/users/login", formData);
-      
-      localStorage.setItem("adminToken", response.data.data.token);
-
+  
+      // ✅ Store token & adminId in localStorage
+      localStorage.setItem("adminId", response.data.data.user._id);
+      localStorage.setItem("adminToken", response.data.data.token); // ✅ Store JWT Token
+  
       setMessage({ type: "success", text: "Login Successful. Redirecting..." });
-
+  
       setTimeout(() => {
         navigate("/admin-dashboard");
       }, 1000);
@@ -40,7 +42,7 @@ const AdminLogin = () => {
       });
     }
   };
-
+  
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
       <h2>Admin Login</h2>

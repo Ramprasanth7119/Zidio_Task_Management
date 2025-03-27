@@ -2,6 +2,7 @@ import { userRepository } from "../repository/userRepository.js";
 import { verifyToken } from "../utils/authUtils.js";
 
 export const isAuthenticated = async function (req, res, next) {
+
     // Check if JWT is passed in the header
     const token = req.headers['x-access-token'];
 
@@ -16,7 +17,8 @@ export const isAuthenticated = async function (req, res, next) {
     try {
         const response = await verifyToken(token);
 
-        console.log("Decoded JWT response:", response);
+        // console.log("✅ Decoded Token:", response);
+
 
         if (!response) {
             return res.status(400).json({
@@ -27,6 +29,7 @@ export const isAuthenticated = async function (req, res, next) {
 
         const user = await userRepository.getUserById(response.id);
         // console.log("Decoded response.id:", response.id);
+        // console.log("✅ Found User:", user);
 
         if (!user) {
             return res.status(404).json({
@@ -49,12 +52,12 @@ export const isAuthenticated = async function (req, res, next) {
     }
 };
 
-export const isAdmin = (req, res, next) => {
-    if (req.user.usertype !== 'admin') {
-        return res.status(403).json({
-            success: false,
-            message: "Access denied. Admins only."
-        });
-    }
-    next();
-};
+    export const isAdmin = (req, res, next) => {
+        if (req.user.usertype !== 'admin') {
+            return res.status(403).json({
+                success: false,
+                message: "Access denied. Admins only."
+            });
+        }
+        next();
+    };

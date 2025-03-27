@@ -1,5 +1,5 @@
 import express from "express";
-import { createTaskController, deleteTaskController, getAllTaskController, getTaskByUserController, updateTaskController } from "../../controller/taskController.js";
+import { createTaskController, deleteTaskController, getAdminTasks, getAllTaskController, getTaskByUserController, modifyTaskController, updateTaskController } from "../../controller/taskController.js";
 import { isAdmin, isAuthenticated } from "../../middleware/authValidation.js";
 
 // Router object
@@ -14,6 +14,22 @@ taskRouter.delete('/delete/:taskId', isAuthenticated, isAdmin, deleteTaskControl
 taskRouter.get('/', isAuthenticated, isAdmin, getAllTaskController);
 
 taskRouter.get('/:userId', isAuthenticated, getTaskByUserController);
+
+taskRouter.get("/admin-tasks", (req, res) => {
+    console.log(" Route /admin/tasks hit");
+    res.json({ success: true, message: "Route is working" });
+});
+
+
+taskRouter.put('/:taskId', isAuthenticated, isAdmin, modifyTaskController);
+
+// taskRouter.get('/admin-tasks', isAuthenticated, isAdmin, getAdminTasks);
+
+// taskRouter.get('/admin-tasks', (req, res, next) => {
+//     console.log("Route /admin-tasks is being hit");
+//     next();  // Pass to middleware
+// }, isAuthenticated, isAdmin, getAdminTasks);
+
 
 taskRouter.get('/users', isAuthenticated, isAdmin, async (req, res) => {
     try {

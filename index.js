@@ -8,8 +8,14 @@ import { connectDB } from "./src/config/dbConfig.js";
 //rest object
 const app = express(); 
 
+const corsOptions = {
+  origin: 'http://localhost:5173', // Allow this origin to access the server
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Allowed methods
+  credentials: true, // Allow credentials (if needed)
+};
+
 // Middlewares
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.text()); 
 app.use(express.urlencoded({ extended: true }));
