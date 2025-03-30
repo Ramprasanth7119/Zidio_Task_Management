@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , Link} from "react-router-dom";
+import "./UserLogin.css"; // Custom CSS file for animations
 
 const UserLogin = () => {
   const [formData, setFormData] = useState({
@@ -27,7 +28,6 @@ const UserLogin = () => {
       const response = await axios.post("http://localhost:5000/api/v1/users/login", formData);
       
       localStorage.setItem("userToken", response.data.data.token);
-
       localStorage.setItem("userEmail", formData.email);
 
       setMessage({ type: "success", text: "Login Successful. Redirecting..." });
@@ -43,35 +43,72 @@ const UserLogin = () => {
     }
   };
 
+  // Triggered on initial render to add animation classes
+  useEffect(() => {
+    const loginForm = document.getElementById("login-form");
+    loginForm.classList.add("animate__fadeIn", "animate__animated");
+  }, []);
+
   return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h2>User Login</h2>
-      {message.text && (
-        <p style={{ color: message.type === "error" ? "red" : "green" }}>{message.text}</p>
-      )}
-      <form onSubmit={handleSubmit} style={{ display: "inline-block", textAlign: "left" }}>
-        <input
-          type="email"
-          name="email"
-          placeholder="User Email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-          style={{ display: "block", margin: "10px 0", padding: "10px", width: "100%" }}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-          style={{ display: "block", margin: "10px 0", padding: "10px", width: "100%" }}
-        />
-        <button type="submit" style={{ padding: "10px 20px", cursor: "pointer" }}>
-          Login
-        </button>
-      </form>
+    <div className="container-fluid gradient-bg">
+      <div className="row justify-content-center align-items-center min-vh-100">
+        <div className="col-md-6 col-lg-4">
+          <div id="login-form" className="card shadow-lg p-4 animate__animated">
+            <h2 className="text-center mb-4">User Login</h2>
+
+            {message.text && (
+              <div className={`alert ${message.type === "error" ? "alert-danger" : "alert-success"}`}>
+                {message.text}
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit}>
+              <div className="mb-3">
+                <label htmlFor="email" className="form-label">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="User Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="form-control"
+                />
+              </div>
+
+              <div className="mb-3">
+                <label htmlFor="password" className="form-label">
+                  Password
+                </label>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  className="form-control"
+                />
+              </div>
+
+              <button type="submit" className="btn btn-primary w-100 mt-3">
+                Login
+              </button>
+            </form>
+
+            <p className="text-center mt-3">
+              Don't have an account?{" "}
+              <Link to="/user" className="text-decoration-none">
+                Click here to Sign Up
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

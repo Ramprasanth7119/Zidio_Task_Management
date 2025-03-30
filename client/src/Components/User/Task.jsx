@@ -1,8 +1,8 @@
 // src/pages/UserDashboard.js
 import { useEffect, useState } from "react";
 import axios from "axios";
-import AppNavbar from "./Navbar";  // Adjust path to Navbar
-import TaskCard from "./TaskCard";  // Adjust path to TaskCard
+import AppNavbar from "../components/Navbar";  // Adjust path to Navbar
+import TaskCard from "../components/TaskCard";  // Adjust path to TaskCard
 
 const UserDashboard = () => {
   const [tasks, setTasks] = useState([]);
@@ -75,7 +75,7 @@ const UserDashboard = () => {
         ) : tasks.length > 0 ? (
           <div className="row">
             {tasks.map((task) => (
-              <TaskCard key={task._id} task={task} /> 
+              <TaskCard key={task._id} task={task} />  {/* Display each task */}
             ))}
           </div>
         ) : (
