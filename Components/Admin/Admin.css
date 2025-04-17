@@ -1,0 +1,400 @@
+/* AdminTaskAssign.css */
+
+/* Container for the task assignment */
+.admin-task-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.admin-task-container h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.admin-task-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.admin-task-container select,
+.admin-task-container input,
+.admin-task-container textarea {
+    width: 100%;
+    padding: 12px;  /* Increased padding for better spacing */
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+.admin-task-container textarea {
+    height: 100px;
+    resize: none;
+}
+
+
+
+/* Assigned Tasks Section */
+.assigned-tasks-container {
+    margin-top: 20px;
+}
+
+.task-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.task-card h4 {
+    margin-bottom: 5px;
+    color: #007bff;
+}
+
+.task-card p {
+    font-size: 20px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.task-card button {
+    margin-right: 5px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Task action button styling */
+.task-card button:first-of-type {
+    background-color: #ffc107;
+    color: black;
+}
+
+.task-card button:first-of-type:hover {
+    background-color: #e0a800;
+}
+
+.task-card button:last-of-type {
+    background-color: #dc3545;
+    color: white;
+}
+
+.task-card button:last-of-type:hover {
+    background-color: #c82333;
+}
+
+/* Responsive Design for mobile screens */
+@media (max-width: 768px) {
+    .admin-task-container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .admin-task-container form {
+        padding: 15px;
+    }
+
+    .task-card {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-task-container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    .admin-task-container h2 {
+        font-size: 20px;
+    }
+
+    .admin-task-container button {
+        font-size: 14px;
+    }
+
+    .task-card {
+        font-size: 14px;
+    }
+}
+
+/* Admin.css */
+
+/* Logout button position */
+.logout {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+    background-color: #d32f2f;
+}
+
+.logout:focus {
+    outline: none;
+}
+
+/* Form container for login, or task assignment */
+form {
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+form:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Input fields, select dropdowns, and textarea */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+/* Focus effect for inputs and select */
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    outline: none;
+}
+
+/* Textarea specific styling */
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Button styling */
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button hover and active effects */
+button:hover {
+    background-color: #0056b3;
+    transform: translateY(-3px);
+}
+
+button:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Form heading styling */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Error and Success message styles */
+p {
+    text-align: center;
+    font-size: 14px;
+    color: #d9534f;
+}
+
+p.success {
+    color: #28a745;
+}
+
+/* Label styling */
+label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Select dropdown customization */
+select {
+    background-color: #f1f1f1;
+    font-size: 14px;
+}
+
+
+.logout {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 60px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+.logout:hover {
+    background-color: #d32f2f;
+}
+
+.logout:focus {
+    outline: none;
+}
+
+
+.hover-form {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .form-container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+  }
+  
+  .btn-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  
+  .landing-page {
+    position: relative;
+    background-image: url('path_to_your_image.jpg'); /* Optional: You can add a background image */
+    background-size: cover;
+    background-position: center;
+    color: white; /* Make sure text is visible on the background */
+  }
+  
+  .landing-page .particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: particle-animation 5s infinite ease-in-out;
+  }
+  
+  .particle-1 {
+    width: 50px;
+    height: 50px;
+    top: 10%;
+    left: 10%;
+    animation-duration: 4s;
+  }
+  
+  .particle-2 {
+    width: 40px;
+    height: 40px;
+    top: 30%;
+    left: 60%;
+    animation-duration: 3s;
+  }
+  
+  .particle-3 {
+    width: 30px;
+    height: 30px;
+    top: 50%;
+    left: 80%;
+    animation-duration: 6s;
+  }
+  
+  @keyframes particle-animation {
+    0% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      opacity: 0.6;
+      transform: translateY(-20px) scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .landing-title, .landing-subtitle, .landing-description {
+    color: #333;
+  }
+  
+  .landing-button {
+    border-radius: 50px;
+    font-size: 18px;
+    padding: 15px 25px;
+    text-align: center;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border: none;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border: none;
+  }
+  
+  .btn-primary:hover, .btn-success:hover {
+    opacity: 0.8;
+  }
+  
