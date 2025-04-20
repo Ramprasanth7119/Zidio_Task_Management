@@ -13,6 +13,7 @@ const AppNavbar = () => {
             <Nav.Link as={Link} to="/home-user" className="nav-item nav-link-hover text-white">Home</Nav.Link>
             <Nav.Link as={Link} to="/user-dashboard" className="nav-item nav-link-hover text-white">Tasks</Nav.Link>
             <Nav.Link as={Link} to="/profile" className="nav-item nav-link-hover text-white">Profile</Nav.Link>
+            <Nav.Link as={Link} to="/join-meet" className="nav-item nav-link-hover text-white">Create Meeting</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

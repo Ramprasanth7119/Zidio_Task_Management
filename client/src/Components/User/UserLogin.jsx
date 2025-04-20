@@ -26,8 +26,11 @@ const UserLogin = () => {
 
     try {
       const response = await axios.post("http://localhost:5000/api/v1/users/login", formData);
+
+      // console.log("response", response.data.data.user.username)
       
       localStorage.setItem("userToken", response.data.data.token);
+      localStorage.setItem("username", response.data.data.user.username);
       localStorage.setItem("userEmail", formData.email);
 
       setMessage({ type: "success", text: "Login Successful. Redirecting..." });
